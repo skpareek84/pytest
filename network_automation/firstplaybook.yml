@@ -1,0 +1,22 @@
+---
+ - hosts: all
+   tasks:
+    - name: i want to run command
+      ios_command:
+       commands: 
+        - show version
+        - show run
+        - show clock
+
+    - name: ping to google dns
+      ios_command:
+       commands:
+        - show ip route
+      register: output
+      tags:
+       - onlythis
+
+    - name: showing normal output
+      debug: 
+       msg: "Hey my output is {{ output }}"
+
