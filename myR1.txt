@@ -1,0 +1,21 @@
+int lo 5
+ip address 1.1.1.1 255.255.255.255
+no shut
+exit
+
+int lo 6
+ip add 2.2.2.2 255.255.255.255
+no sh
+exit
+
+int lo 7
+ip add 3.3.3.3 255.255.255.255
+no sh
+exit
+
+int lo8
+ip add 8.8.8.8 255.255.255.255
+no sh
+exit
+
+

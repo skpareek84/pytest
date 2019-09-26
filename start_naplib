@@ -1,0 +1,36 @@
+#!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+
+from napalm import get_network_driver
+
+driver=get_network_driver('ios')
+device = driver('172.16.43.153', 'root', 'cisco')
+
+# open session with device
+device.open()
+
+#merging config
+print(device.load_merge_candidate(filename='myR1.txt'))
+
+# check the diff
+
+print(device.compare_config())
+
+c=input("confirm with y/n to apply config : ")
+
+if c == 'y' or c == 'Y':
+	print('Commiting the config ')
+	#print('committing the configuration')
+	device.commit_config()
+elif c == 'n' or c == 'N' :
+	print('discarding the config')
+	device.discard_config()
+else :
+	print('Type y or n')
+
+print('roll back the changes')
+device.rollback()
+
+# close connection as well
+device.close()
+
+
